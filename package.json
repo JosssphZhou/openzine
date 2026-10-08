@@ -1,0 +1,17 @@
+{
+  "name": "openzine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Turn a PDF or a folder of images into a page-turning 3D booklet in a single offline HTML file.",
+  "scripts": {
+    "build": "node renderer/build.mjs",
+    "verify:source": "node renderer/verify-source.mjs",
+    "check:pdf": "node scripts/check-pdf.mjs",
+    "demo": "node scripts/make-book.mjs --input examples/demo-pages --out examples/demo.html --title \"OpenZine demo\""
+  },
+  "devDependencies": {
+    "acorn": "8.19.0",
+    "esbuild": "0.28.2"
+  }
+}

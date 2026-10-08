@@ -1,0 +1,16 @@
+{
+  "name": "openzine",
+  "owner": {
+    "name": "Joseph Zhou"
+  },
+  "metadata": {
+    "description": "Turn a PDF or a folder of page images into a page-turning 3D booklet in one offline HTML file."
+  },
+  "plugins": [
+    {
+      "name": "openzine",
+      "source": "./plugins/openzine",
+      "description": "Turn a PDF or a folder of page images into a page-turning 3D booklet with realistic paper lighting, saved as one offline HTML file."
+    }
+  ]
+}

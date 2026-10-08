@@ -1,0 +1,12 @@
+{
+  "name": "openzine-skill",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenZine make-book command. Runs with plain Node.js; dependencies are only needed for the pdf.js fallback when Poppler's pdftoppm is not installed.",
+  "license": "SEE LICENSE IN ../../../../LICENSE",
+  "dependencies": {
+    "@napi-rs/canvas": "1.0.10",
+    "pdfjs-dist": "6.4.299"
+  }
+}

@@ -1,0 +1,81 @@
+OpenZine combines new code with code and assets extracted from a third party.
+Each part keeps its own terms. Only the parts listed under section 1 are
+licensed under the MIT License.
+
+
+1. New OpenZine code: MIT License
+
+Copyright (c) 2026 Joseph Zhou
+
+Covers:
+  plugins/openzine/skills/openzine/scripts/
+  plugins/openzine/skills/openzine/SKILL.md
+  plugins/openzine/.claude-plugin/, .claude-plugin/
+  renderer/src/viewer.js, renderer/build.mjs, renderer/verify-source.mjs
+  scripts/
+  examples/demo-pages/03-grid.png to 07-ink.png
+  README.md, README.zh-CN.md
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+2. Paper Mono page-turn renderer, paper shader and grain texture: copyright Paper
+
+Extracted from the published browser code of https://paper.design/mono
+on 2026-10-08. Copyright Paper and its authors. These files are not covered
+by the MIT License above, and no separate open-source license for them has
+been found.
+
+Covers:
+  renderer/src/book.js, renderer/src/mobile-book.js, renderer/src/loader.js,
+  renderer/src/performance.js
+  renderer/reference/
+  plugins/openzine/skills/openzine/runtime/grain.webp
+  the corresponding parts of plugins/openzine/skills/openzine/runtime/openzine.js
+
+
+3. Three.js r162: MIT License
+
+Copyright © 2010-2024 three.js authors. Full text in
+renderer/vendor/THREE-LICENSE.txt and
+plugins/openzine/skills/openzine/runtime/THREE-LICENSE.txt.
+
+Covers:
+  renderer/vendor/three.module.min.js
+  the corresponding parts of plugins/openzine/skills/openzine/runtime/openzine.js
+
+
+4. Demo pages by Joseph Zhou
+
+examples/demo-pages/01-cover.png, 02-title.png and 08-back-cover.png are
+copyright Joseph Zhou and are included only to demonstrate the tool.
+
+
+5. Paper Mono typeface: SIL Open Font License 1.1
+
+Copyright 2025 The Paper-Mono.Git Project Authors
+(https://github.com/paper-design/paper-mono), based on Geist Mono, copyright
+2023 Vercel. The unmodified variable web font is embedded in the viewer so
+the interface uses the same typeface as Paper's page. Full text in
+renderer/vendor/PaperMono-OFL.txt and
+plugins/openzine/skills/openzine/runtime/PAPERMONO-OFL.txt.
+
+Covers:
+  renderer/vendor/PaperMono.woff2
+  the corresponding part of plugins/openzine/skills/openzine/runtime/openzine.js

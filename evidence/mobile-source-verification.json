@@ -1,0 +1,46 @@
+{
+  "verifiedAt": "2026-10-08T14:07:19.745Z",
+  "source": "reference/mobile.published.js (paper.design/mono chunk 2nugie3hvt1bv.js)",
+  "shaderTemplates": 14,
+  "coreAST": "identical except grain URL,onChange,public controller",
+  "frame": {
+    "left": -0.34,
+    "right": 1.22,
+    "bottom": -1.2,
+    "top": 1.2
+  },
+  "camera": {
+    "position": [
+      0.44,
+      0,
+      3.1
+    ],
+    "lookAt": [
+      0.44,
+      0,
+      0
+    ],
+    "near": 1.5,
+    "far": 4.5,
+    "fov": "2*atan(2.4/2/3.1)*180/PI",
+    "aspect": "canvas.clientWidth/canvas.clientHeight"
+  },
+  "light": {
+    "hemisphere": [
+      "#ffffff",
+      "#a1aeaf",
+      1.7
+    ],
+    "directional": [
+      "#ffffff",
+      2
+    ],
+    "position": [
+      0.689,
+      -1.15,
+      2.15
+    ]
+  },
+  "paperTransparency": 0.3,
+  "shaderShadowOpacity": 0.4
+}
