@@ -1,25 +1,47 @@
-# OpenZine
+![OpenZine: a PDF to an agent, a book in seconds. A booklet cover bends in 3D beside the title.](evidence/cover.png)
 
-**Turn a PDF or a folder of page images into a page-turning 3D booklet, as one HTML file that opens offline.**
-**Try it:** [page through a live booklet](https://openzine.pen-ine.workers.dev) in your browser.
-**Install:** in Claude Code run `/plugin marketplace add JosssphZhou/openzine`, then `/plugin install openzine@openzine`. Codex: [copy one folder](#codex).
-**Use:** ask your agent "make a flipbook from `portfolio.pdf`", or run `node scripts/make-book.mjs --input portfolio.pdf --out portfolio.html`.
+**OpenZine is an agent skill that turns a PDF or a folder of page images into a 3D booklet you page through in the browser.**
 
-[中文说明](README.zh-CN.md)
+**Try it:** [page through a live booklet](https://openzine.pen-ine.workers.dev). [中文说明](README.zh-CN.md)
+
+The page-turn renderer, paper shader and paper grain come from Paper's [paper.design/mono](https://paper.design/mono). They are copyright Paper and are not under this repository's MIT License. See [Credits](#credits).
+
+## What it does
+
+### Pages turn like paper
+
+Each page bends as it turns, catches the light, and casts a shadow on the page underneath. The paper has a grain texture.
 
 ![An OpenZine booklet mid-turn: a page curls over the spine and catches the light](evidence/hero-mid-turn.png)
 
-> **Credit.** The page-turn renderer, paper shader and paper grain texture are extracted from Paper's [paper.design/mono](https://paper.design/mono) page. They are copyright **Paper** and are not covered by this repository's MIT License. [Three.js](https://threejs.org) r162 is bundled under the MIT License, and the [Paper Mono](https://github.com/paper-design/paper-mono) typeface under the SIL Open Font License 1.1. Every generated book links to paper.design/mono in its footer. See [LICENSE](LICENSE) for which files are under which terms.
+### Ways to turn a page
 
-## What you get
+- Drag a page. Let go and it falls the rest of the way at the speed you gave it, or drops back if you did not pull it far enough.
+- Click a page to turn it.
+- Press and hold on a page to keep turning. Each turn comes faster than the one before.
+- Press the left and right arrow keys to turn one page. Press Home for the front cover and End for the back cover.
 
-You hand your agent a PDF or a folder of design pages, a portfolio, a lookbook or an exhibition booklet. A few seconds later you have a single `.html` file:
+### Covers
 
-- Pages bend, catch the light and cast shadows as they turn, on a textured paper surface.
-- Readers drag or click a page to turn it, hold to keep turning, or use the arrow keys, Home and End.
-- Images, renderer and texture are all inside the file. Double-click to open it, email it, or put it on any static host. It makes no network requests.
+The first page is the front cover and opens closed, like a real booklet. The last page is the back cover.
 
-No InDesign, no code, no account.
+### Phones
+
+Portrait screens show one page at a time, using Paper's mobile renderer. A Single / Spread switch sits under the page numbers. Switching keeps you on the page you were reading.
+
+<p align="center"><img src="evidence/portrait-single.png" width="280" alt="A portrait screen: one page at a time, with the Single / Spread switch under the page numbers"></p>
+
+### PDFs and image folders
+
+- Give it a PDF, scanned PDFs included, or a folder of PNG, JPG, WebP or AVIF pages.
+- Pages in a different shape are shown whole on a paper-coloured margin. They are never cropped or stretched.
+- A 60-page NASA graphics standards manual went from PDF to finished booklet in 19 seconds.
+
+### Claude Code and Codex
+
+OpenZine installs as a Claude Code plugin or as a Codex skill. Any other agent that can read a `SKILL.md` and run Node.js can use it too.
+
+The result is one `.html` file with the pages, renderer and grain inside. It makes no network requests, so you can email it or put it on any static host.
 
 ## Install
 
@@ -49,17 +71,21 @@ The skill is the folder `plugins/openzine/skills/openzine`. It needs only Node.j
 
 ## Use
 
+Ask your agent "make a flipbook from `portfolio.pdf`", or run the command:
+
 ```sh
 node scripts/make-book.mjs --input <folder-or-pdf> --out <book.html> [--title "My zine"] [--lang en|zh] [--portrait single|spread]
 ```
 
-`scripts/make-book.mjs` at the repository root forwards to `plugins/openzine/skills/openzine/scripts/make-book.mjs`. Try it on the bundled demo:
+`scripts/make-book.mjs` at the repository root forwards to `plugins/openzine/skills/openzine/scripts/make-book.mjs`. `--lang zh` shows the viewer interface in Chinese; the default is English. Try it on the bundled demo:
 
 ```sh
 node scripts/make-book.mjs --input examples/demo-pages --out demo.html --title "OpenZine demo"
 ```
 
-Rules for pages:
+When something fails, the command prints `Error:` with the cause and the fix, then exits with code 1.
+
+## Page rules
 
 - Order is the file name in natural order (`2.png` before `10.png`). The first page is the front cover, the last is the back cover.
 - An odd page count gets one blank page at the end.
@@ -68,9 +94,10 @@ Rules for pages:
 - PDF pages are converted to 1440 px wide JPGs with Poppler's `pdftoppm` when it is installed, otherwise with pdf.js (run `npm install` in the skill folder once). `--pdf-engine pdftoppm|pdfjs` forces one.
 - Landscape screens show the two-page spread. Portrait screens open with Paper's single-page mobile renderer and show a Single / Spread switch under the page numbers; `--portrait spread` opens portrait screens on the spread instead.
 
-<p align="center"><img src="evidence/portrait-single.png" width="280" alt="A portrait screen: one page at a time, with the Single / Spread switch under the page numbers"></p>
+## Limits
 
-When something fails, the command prints `Error:` with the cause and the fix, then exits with code 1.
+- Needs WebGL. Very old browsers or browsers with hardware acceleration turned off show a load error.
+- Every page is embedded, so a 60-page book of large PNGs can pass 100 MB. JPG pages around 1440 px wide keep it small.
 
 ## Repository layout
 
@@ -106,10 +133,9 @@ npm run build           # writes plugins/openzine/skills/openzine/runtime/openzi
 
 `verify:source` parses both files and confirms that the extracted renderer differs from Paper's published function only in four documented places: the configurable first spread, the local grain texture URL, a page-change callback, and a controller object in place of the cleanup function. All 16 shader template strings match exactly, and the grain texture matches its recorded SHA-256. It checks `mobile-book.js` the same way against Paper's mobile function: all 14 shader template strings match, and the only differences are the local grain texture URL, one added page-change call, and the controller object. The mobile camera frame constant is compared with Paper's published value.
 
-## Limits
+## Credits
 
-- Needs WebGL. Very old browsers or browsers with hardware acceleration turned off show a load error.
-- Every page is embedded, so a 60-page book of large PNGs can pass 100 MB. JPG pages around 1440 px wide keep it small.
+The page-turn renderer, paper shader and paper grain texture are extracted from Paper's [paper.design/mono](https://paper.design/mono) page. They are copyright **Paper** and are not covered by this repository's MIT License. [Three.js](https://threejs.org) r162 is bundled under the MIT License, and the [Paper Mono](https://github.com/paper-design/paper-mono) typeface under the SIL Open Font License 1.1. Every generated book links to paper.design/mono in its footer. See [LICENSE](LICENSE) for which files are under which terms.
 
 ## License
 
