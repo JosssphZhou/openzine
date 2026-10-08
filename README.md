@@ -1,6 +1,7 @@
 # OpenZine
 
 **Turn a PDF or a folder of page images into a page-turning 3D booklet, as one HTML file that opens offline.**
+**Try it:** [page through a live booklet](https://openzine.pen-ine.workers.dev) in your browser.
 **Install:** in Claude Code run `/plugin marketplace add JosssphZhou/openzine`, then `/plugin install openzine@openzine`. Codex: [copy one folder](#codex).
 **Use:** ask your agent "make a flipbook from `portfolio.pdf`", or run `node scripts/make-book.mjs --input portfolio.pdf --out portfolio.html`.
 

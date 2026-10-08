@@ -1,6 +1,7 @@
 # OpenZine
 
 **把一个 PDF 或一组页面图片做成能翻页的 3D 小册子，输出一个断网也能打开的网页文件。**
+**在线试翻：** [在浏览器里翻一本做好的小册子](https://openzine.pen-ine.workers.dev)。
 **安装：** 在 Claude Code 里运行 `/plugin marketplace add JosssphZhou/openzine`，再运行 `/plugin install openzine@openzine`。Codex 的装法见[复制一个文件夹](#codex)。
 **使用：** 对你的 agent 说「把 `portfolio.pdf` 做成翻页小册子」，或者运行 `node scripts/make-book.mjs --input portfolio.pdf --out portfolio.html`。
 
