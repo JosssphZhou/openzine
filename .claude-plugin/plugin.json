@@ -1,0 +1,13 @@
+{
+  "name": "openzine",
+  "displayName": "OpenZine",
+  "version": "0.1.0",
+  "description": "Turn a PDF or a folder of page images into a page-turning 3D booklet with realistic paper lighting, saved as one offline HTML file.",
+  "author": {
+    "name": "Joseph Zhou"
+  },
+  "homepage": "https://github.com/JosssphZhou/openzine",
+  "repository": "https://github.com/JosssphZhou/openzine",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": ["booklet", "flipbook", "zine", "portfolio", "pdf", "webgl"]
+}
